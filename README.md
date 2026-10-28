@@ -1,7 +1,9 @@
 # Bremen Compensation Registry Harvester (IRIS-OEK-HB)
 
-Pulls Bremen's compensation site registry (Kompensationsverzeichnis) and loads it
+This repo pulls the Bremen's compensation site registry (Kompensationsverzeichnis) and loads it
 into `iris_staging.compensation_sites`.
+
+AI-assisted coding was used in this repo as well.
 
 ## Data source
 
@@ -110,6 +112,10 @@ are left as `NULL` and counted, not guessed at or silently dropped.
 
 ## Known gaps
 
+- The spec asks for cadastre names to be normalized alongside municipality. The
+  source layer has no cadastre/Flurstück field at all — checked against the real
+  GDB schema, not assumed — so there's nothing to normalize. `municipality` is
+  the only location field derived, via the spatial join described above.
 - 88 of 829 records have no municipality, for the reason above.
 - `Stand` (the as-of date field) is empty for every single row in the source data.
   That's the source, not something lost in parsing.
